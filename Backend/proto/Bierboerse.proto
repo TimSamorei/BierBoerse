@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package de.hadiko.vev.k2.bierboerse;
+
+import "google/protobuf/timestamp.proto";
+
+service Bierboerse {
+
+    rpc updateBeers (UpdateBeerRequest) returns (ServerReply) {}
+
+    rpc getPrices (PriceRequest) returns (ServerReply) {}
+
+  }
+
+  message PriceDatapoint {
+    int32 rothausPrice = 1;
+    int32 augustinerPrice = 2;
+    int32 rothausBought = 3;
+    int32 augustinerBought = 4;
+    google.protobuf.Timestamp timestamp = 5;
+
+  }
+
+  message PriceHistory {
+    repeated PriceDatapoint history = 1;
+  }
+
+  message UpdateBeerRequest {
+    int32 numRothaus = 1;
+    int32 numAugustiner = 2;
+  }
+  
+  message PriceRequest {
+    google.protobuf.Timestamp timestamp = 1;
+  }
+
+  message ServerReply {
+    PriceDatapoint prices = 1;
+  }
