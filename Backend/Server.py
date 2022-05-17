@@ -3,7 +3,7 @@ from Bierboerse_pb2 import Beverage
 import Database
 import grpc
 import datetime
-import google.protobuf.timestamp_pb2 import Timestamp
+from google.protobuf.timestamp_pb2 import Timestamp
 import Bierboerse_pb2_grpc
 import Bierboerse_pb2
 
