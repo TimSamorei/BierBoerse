@@ -9,20 +9,19 @@ def getLatestDatapoint():
     return getHistory().history[-1]
 
 def addDatapoint(dataPoint):
-    history = getHistory()
-    newList = history.history
+    history = getHistory().history
 
-    newList.append(dataPoint)
+    history.append(dataPoint)
 
-    newHistory = Bierboerse_pb2.History(history=newList)
+    newHistory = Bierboerse_pb2.History(history=history)
 
-    f = open("demofile.txt", "w")
+    with open("database.txt", "w") as file:
 
-    data = newHistory.SerializeToString()
-    encodedBytes = base64.b64encode(data)
-    encodedStr = str(encodedBytes, "utf-8")
+        data = newHistory.SerializeToString()
+        encodedBytes = base64.b64encode(data)
+        encodedStr = str(encodedBytes, "utf-8")
 
-    f.write(encodedStr)
+        file.write(encodedStr)
 
 def initDatabase():
     bevList = []
@@ -30,26 +29,24 @@ def initDatabase():
 
     hisList = []
     hisList.append(dataPoint)
-    
+
     history = Bierboerse_pb2.History(history=hisList)
 
-    f = open("demofile.txt", "w")
+    with open("database.txt", "w") as file:
 
-    data = history.SerializeToString()
-    encodedBytes = base64.b64encode(data)
-    encodedStr = str(encodedBytes, "utf-8")
+        data = history.SerializeToString()
+        encodedBytes = base64.b64encode(data)
+        encodedStr = str(encodedBytes, "utf-8")
 
-    f.write(encodedStr)
+        file.write(encodedStr)
 
 def getHistory():
-    f = open("demofile.txt", "r")
-    
-    history = Bierboerse_pb2.History()
+    with open("demofile.txt", "r") as file:
 
-    encodedStr = f.read()
-    decodedBytes = base64.b64decode(encodedStr)
-    history.ParseFromString(decodedBytes)
+        history = Bierboerse_pb2.History()
 
-    return history
+        encodedStr = file.read()
+        decodedBytes = base64.b64decode(encodedStr)
+        history.ParseFromString(decodedBytes)
 
-
+        return history
