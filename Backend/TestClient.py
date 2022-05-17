@@ -8,7 +8,7 @@ locale.setlocale(locale.LC_ALL, "german")
 
 def printPricelist(datapoint: Bierboerse_pb2.Datapoint):
     print("Prices at", datapoint.timestamp)
-    print("ID\tNAME\tPRICE\tSOLD")
+    print("ID\tNAME\t\tPRICE\t\tSOLD")
     for bev in datapoint.beverages:
         print(bev.id, "\t", bev.name, "\t", locale.currency(bev.currentPrice / 100), "\t", bev.sold)
     print("=========================")
@@ -25,6 +25,6 @@ while(True):
     buyIndex = int(input("Buy: "))
 
     req = Bierboerse_pb2.BuyRequest(buyIndex=buyIndex)
-    datapoint = stub.buyBeverage(req)
+    datapoint = stub.buyBeverage(req).newPrices
 
     printPricelist(datapoint)

@@ -27,8 +27,8 @@ class BierBoerseServer(Bierboerse_pb2_grpc.BierboerseServicer):
 
     def buyBeverage(self, request, context):
         latestDatapoint = Database.getLatestDatapoint()
-        oldBeverage = latestDatapoint.beverage
         oldBeverageList = latestDatapoint.beverages
+        oldBeverage = oldBeverageList[request.buyIndex]
         beverageNew = Bierboerse_pb2.Beverage(
             name=oldBeverage.name,
             id=oldBeverage.id,
@@ -37,6 +37,7 @@ class BierBoerseServer(Bierboerse_pb2_grpc.BierboerseServicer):
             sold=oldBeverage.sold + 1,
             profit=oldBeverage.profit + oldBeverage.currentPrice
         )
+        print("bought", beverageNew)
 
         newBeverageList = []
 
@@ -50,9 +51,9 @@ class BierBoerseServer(Bierboerse_pb2_grpc.BierboerseServicer):
 
         Database.addDatapoint(newDatapoint)
 
-        return Bierboerse_pb2.BuyReply(oldPrices=latestDatapoint, newPrices=newDatapoint)
+        return Bierboerse_pb2.BuyReply(oldPrices=latestDatapoint, newPrices=newDatapoint, timestamp=self.getTimestamp())
 
-        
+
 
 
 
@@ -63,7 +64,7 @@ class BierBoerseServer(Bierboerse_pb2_grpc.BierboerseServicer):
     def getHistory(self, request, context):
         return Database.getHistory()
 
-    def getTimestamp():
+    def getTimestamp(self):
         t = datetime.datetime.now().timestamp()
         return Timestamp(seconds=int(t), nanos=int(t % 1*1e9))
 
