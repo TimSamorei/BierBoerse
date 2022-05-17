@@ -2,26 +2,24 @@ import grpc
 import Bierboerse_pb2_grpc
 import Bierboerse_pb2
 
+def printPricelist(datapoint: Bierboerse_pb2.Datapoint):
+    print("Prices at", datapoint.timestamp)
+    for bev in datapoint.beverages:
+        print(bev.id, "\t", bev.name, "\t", bev.currentPrice / 100, "€")
+    print("=========================")
+
 
 channel = grpc.insecure_channel('localhost:1337', options=(('grpc.enable_http_proxy', 0),))
 stub = Bierboerse_pb2_grpc.BierboerseStub(channel)
 
-rothaus = 1
-augustiner = 0
+datapoint = stub.getPrices(Bierboerse_pb2.PricesRequest())
+printPricelist(datapoint)
 
 while(True):
-    
-    req = Bierboerse_pb2.UpdateBeerRequest(numRothaus=rothaus,numAugustiner=augustiner)
-    res = stub.updateBeers(req)
 
-    if (res.prices.augustinerPrice < 200):
-        rothaus = 0
-        augustiner = 1
-    else:
-        rothaus = 1
-        augustiner = 0
+    buyId = int(input("Buy: "))
 
-    if (res.prices.rothausBought == 1000):
-        print(res)
-        break
+    req = Bierboerse_pb2.BuyRequest(buyId=buyId)
+    datapoint = stub.buyBeverage(req)
 
+    printPricelist(datapoint)
