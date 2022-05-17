@@ -1,7 +1,9 @@
+import base64
+
 from google.protobuf.internal.encoder import _VarintBytes
 from google.protobuf.internal.decoder import _DecodeVarint32
-import base64
 import grpc
+
 import Bierboerse_pb2_grpc
 import Bierboerse_pb2
 
@@ -24,13 +26,16 @@ def addDatapoint(dataPoint):
         file.write(encodedStr)
 
 def initDatabase():
-    bevList = []
-    dataPoint = Bierboerse_pb2.Datapoint(beverages=bevList)
+    beverages = [
+        Bierboerse_pb2.Beverage(name="Rothaus", id=0,
+                                purchasingPrice=70, currentPrice=120, sold=0),
+        Bierboerse_pb2.Beverage(name="Augustiner", id=1,
+                                purchasingPrice=90, currentPrice=150, sold=0)
+    ]
+    dataPoint = Bierboerse_pb2.Datapoint(beverages=beverages)
 
-    hisList = []
-    hisList.append(dataPoint)
 
-    history = Bierboerse_pb2.History(history=hisList)
+    history = Bierboerse_pb2.History(history=[dataPoint])
 
     with open("database.txt", "w", encoding="utf-8") as file:
 
@@ -41,7 +46,7 @@ def initDatabase():
         file.write(encodedStr)
 
 def getHistory():
-    with open("demofile.txt", "r", encoding="utf-8") as file:
+    with open("database.txt", "r", encoding="utf-8") as file:
 
         history = Bierboerse_pb2.History()
 
