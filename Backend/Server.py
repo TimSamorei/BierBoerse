@@ -26,7 +26,34 @@ class BierBoerseServer(Bierboerse_pb2_grpc.BierboerseServicer):
 
 
     def buyBeverage(self, request, context):
-        return
+        latestDatapoint = Database.getLatestDatapoint()
+        oldBeverageList = latestDatapoint.beverages
+        beverageOld = latestDatapoint.beverages.get(request.buyIndex)
+        beverageNew = Bierboerse_pb2.Beverage(
+            name=latestDatapoint.getName(),
+            id=latestDatapoint.getId(),
+            purchasingPrice=latestDatapoint.getPurchasingPrice(),
+            currentPrice=latestDatapoint.getCurrentPrice(),
+            sold=latestDatapoint.getSold() + 1,
+            profit=latestDatapoint.getProfit() + latestDatapoint.getCurrentPrice()
+        )
+
+        newBeverageList = []
+
+        for beverage in oldBeverageList:
+            if (beverage.getId() != beverageNew.getId()):
+                newBeverageList.add(beverage)
+            else:
+                newBeverageList.add(beverageNew)
+
+        newDatapoint = Bierboerse_pb2.Datapoint(beverages=newBeverageList)
+
+        Database.addDatapoint(newDatapoint)
+
+        return Bierboerse_pb2.BuyReply(oldPrices=latestDatapoint, newPrices=newDatapoint)
+
+        
+
 
 
     def getPrices(self, request, context):
