@@ -35,7 +35,7 @@ class BierBoerseServer(Bierboerse_pb2_grpc.BierboerseServicer):
 
     def getTimestamp():
         t = datetime.datetime.now().timestamp()
-        return Timestamp(seconds=int(t),nanos=int(t % 1*1e9))
+        return Timestamp(seconds=int(t), nanos=int(t % 1*1e9))
 
 
 def serve():

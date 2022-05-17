@@ -3,6 +3,7 @@
 # source: Bierboerse.proto
 """Generated protocol buffer code."""
 from google.protobuf import descriptor as _descriptor
+from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
@@ -14,375 +15,18 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor.FileDescriptor(
-  name='Bierboerse.proto',
-  package='de.hadiko.vev.k2.bierboerse',
-  syntax='proto3',
-  serialized_options=None,
-  create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x10\x42ierboerse.proto\x12\x1b\x64\x65.hadiko.vev.k2.bierboerse\x1a\x1fgoogle/protobuf/timestamp.proto\"q\n\x08\x42\x65verage\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x05\x12\x17\n\x0fpurchasingPrice\x18\x03 \x01(\x05\x12\x14\n\x0c\x63urrentPrice\x18\x04 \x01(\x05\x12\x0c\n\x04sold\x18\x05 \x01(\x05\x12\x0e\n\x06profit\x18\x06 \x01(\x05\"t\n\tDatapoint\x12\x38\n\tbeverages\x18\x01 \x03(\x0b\x32%.de.hadiko.vev.k2.bierboerse.Beverage\x12-\n\ttimestamp\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"B\n\x07History\x12\x37\n\x07history\x18\x01 \x03(\x0b\x32&.de.hadiko.vev.k2.bierboerse.Datapoint\"\x1d\n\rUpdateRequest\x12\x0c\n\x04sold\x18\x01 \x03(\x05\";\n\nGetRequest\x12-\n\ttimestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"E\n\nAddRequest\x12\x37\n\x08\x62\x65verage\x18\x01 \x01(\x0b\x32%.de.hadiko.vev.k2.bierboerse.Beverage\"\x83\x01\n\x0bUpdateReply\x12\x39\n\toldPrices\x18\x01 \x01(\x0b\x32&.de.hadiko.vev.k2.bierboerse.Datapoint\x12\x39\n\tnewPrices\x18\x02 \x01(\x0b\x32&.de.hadiko.vev.k2.bierboerse.Datapoint\"B\n\x08GetReply\x12\x36\n\x06prices\x18\x01 \x01(\x0b\x32&.de.hadiko.vev.k2.bierboerse.Datapoint\"B\n\x08\x41\x64\x64Reply\x12\x36\n\x06prices\x18\x01 \x01(\x0b\x32&.de.hadiko.vev.k2.bierboerse.Datapoint2\xb8\x02\n\nBierboerse\x12_\n\x0b\x61\x64\x64\x42\x65verage\x12\'.de.hadiko.vev.k2.bierboerse.AddRequest\x1a%.de.hadiko.vev.k2.bierboerse.AddReply\"\x00\x12h\n\x0eupdateBeverage\x12*.de.hadiko.vev.k2.bierboerse.UpdateRequest\x1a(.de.hadiko.vev.k2.bierboerse.UpdateReply\"\x00\x12_\n\x0bgetBeverage\x12\'.de.hadiko.vev.k2.bierboerse.GetRequest\x1a%.de.hadiko.vev.k2.bierboerse.GetReply\"\x00\x62\x06proto3'
-  ,
-  dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x42ierboerse.proto\x12\x1b\x64\x65.hadiko.vev.k2.bierboerse\x1a\x1fgoogle/protobuf/timestamp.proto\"q\n\x08\x42\x65verage\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x05\x12\x17\n\x0fpurchasingPrice\x18\x03 \x01(\x05\x12\x14\n\x0c\x63urrentPrice\x18\x04 \x01(\x05\x12\x0c\n\x04sold\x18\x05 \x01(\x05\x12\x0e\n\x06profit\x18\x06 \x01(\x05\"t\n\tDatapoint\x12\x38\n\tbeverages\x18\x01 \x03(\x0b\x32%.de.hadiko.vev.k2.bierboerse.Beverage\x12-\n\ttimestamp\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"B\n\x07History\x12\x37\n\x07history\x18\x01 \x03(\x0b\x32&.de.hadiko.vev.k2.bierboerse.Datapoint\"\x1e\n\nBuyRequest\x12\x10\n\x08\x62uyIndex\x18\x01 \x01(\x05\"E\n\nAddRequest\x12\x37\n\x08\x62\x65verage\x18\x01 \x01(\x0b\x32%.de.hadiko.vev.k2.bierboerse.Beverage\"\x0f\n\rPricesRequest\":\n\x0eHistoryRequest\x12(\n\x04\x66rom\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x80\x01\n\x08\x42uyReply\x12\x39\n\toldPrices\x18\x01 \x01(\x0b\x32&.de.hadiko.vev.k2.bierboerse.Datapoint\x12\x39\n\tnewPrices\x18\x02 \x01(\x0b\x32&.de.hadiko.vev.k2.bierboerse.Datapoint2\x95\x03\n\nBierboerse\x12`\n\x0b\x61\x64\x64\x42\x65verage\x12\'.de.hadiko.vev.k2.bierboerse.AddRequest\x1a&.de.hadiko.vev.k2.bierboerse.Datapoint\"\x00\x12_\n\x0b\x62uyBeverage\x12\'.de.hadiko.vev.k2.bierboerse.BuyRequest\x1a%.de.hadiko.vev.k2.bierboerse.BuyReply\"\x00\x12\x61\n\tgetPrices\x12*.de.hadiko.vev.k2.bierboerse.PricesRequest\x1a&.de.hadiko.vev.k2.bierboerse.Datapoint\"\x00\x12\x61\n\ngetHistory\x12+.de.hadiko.vev.k2.bierboerse.HistoryRequest\x1a$.de.hadiko.vev.k2.bierboerse.History\"\x00\x62\x06proto3')
 
 
 
-
-_BEVERAGE = _descriptor.Descriptor(
-  name='Beverage',
-  full_name='de.hadiko.vev.k2.bierboerse.Beverage',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='de.hadiko.vev.k2.bierboerse.Beverage.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='id', full_name='de.hadiko.vev.k2.bierboerse.Beverage.id', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='purchasingPrice', full_name='de.hadiko.vev.k2.bierboerse.Beverage.purchasingPrice', index=2,
-      number=3, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='currentPrice', full_name='de.hadiko.vev.k2.bierboerse.Beverage.currentPrice', index=3,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='sold', full_name='de.hadiko.vev.k2.bierboerse.Beverage.sold', index=4,
-      number=5, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='profit', full_name='de.hadiko.vev.k2.bierboerse.Beverage.profit', index=5,
-      number=6, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=82,
-  serialized_end=195,
-)
-
-
-_DATAPOINT = _descriptor.Descriptor(
-  name='Datapoint',
-  full_name='de.hadiko.vev.k2.bierboerse.Datapoint',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='beverages', full_name='de.hadiko.vev.k2.bierboerse.Datapoint.beverages', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='timestamp', full_name='de.hadiko.vev.k2.bierboerse.Datapoint.timestamp', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=197,
-  serialized_end=313,
-)
-
-
-_HISTORY = _descriptor.Descriptor(
-  name='History',
-  full_name='de.hadiko.vev.k2.bierboerse.History',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='history', full_name='de.hadiko.vev.k2.bierboerse.History.history', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=315,
-  serialized_end=381,
-)
-
-
-_UPDATEREQUEST = _descriptor.Descriptor(
-  name='UpdateRequest',
-  full_name='de.hadiko.vev.k2.bierboerse.UpdateRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='sold', full_name='de.hadiko.vev.k2.bierboerse.UpdateRequest.sold', index=0,
-      number=1, type=5, cpp_type=1, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=383,
-  serialized_end=412,
-)
-
-
-_GETREQUEST = _descriptor.Descriptor(
-  name='GetRequest',
-  full_name='de.hadiko.vev.k2.bierboerse.GetRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='timestamp', full_name='de.hadiko.vev.k2.bierboerse.GetRequest.timestamp', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=414,
-  serialized_end=473,
-)
-
-
-_ADDREQUEST = _descriptor.Descriptor(
-  name='AddRequest',
-  full_name='de.hadiko.vev.k2.bierboerse.AddRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='beverage', full_name='de.hadiko.vev.k2.bierboerse.AddRequest.beverage', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=475,
-  serialized_end=544,
-)
-
-
-_UPDATEREPLY = _descriptor.Descriptor(
-  name='UpdateReply',
-  full_name='de.hadiko.vev.k2.bierboerse.UpdateReply',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='oldPrices', full_name='de.hadiko.vev.k2.bierboerse.UpdateReply.oldPrices', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='newPrices', full_name='de.hadiko.vev.k2.bierboerse.UpdateReply.newPrices', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=547,
-  serialized_end=678,
-)
-
-
-_GETREPLY = _descriptor.Descriptor(
-  name='GetReply',
-  full_name='de.hadiko.vev.k2.bierboerse.GetReply',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='prices', full_name='de.hadiko.vev.k2.bierboerse.GetReply.prices', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=680,
-  serialized_end=746,
-)
-
-
-_ADDREPLY = _descriptor.Descriptor(
-  name='AddReply',
-  full_name='de.hadiko.vev.k2.bierboerse.AddReply',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='prices', full_name='de.hadiko.vev.k2.bierboerse.AddReply.prices', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=748,
-  serialized_end=814,
-)
-
-_DATAPOINT.fields_by_name['beverages'].message_type = _BEVERAGE
-_DATAPOINT.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_HISTORY.fields_by_name['history'].message_type = _DATAPOINT
-_GETREQUEST.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_ADDREQUEST.fields_by_name['beverage'].message_type = _BEVERAGE
-_UPDATEREPLY.fields_by_name['oldPrices'].message_type = _DATAPOINT
-_UPDATEREPLY.fields_by_name['newPrices'].message_type = _DATAPOINT
-_GETREPLY.fields_by_name['prices'].message_type = _DATAPOINT
-_ADDREPLY.fields_by_name['prices'].message_type = _DATAPOINT
-DESCRIPTOR.message_types_by_name['Beverage'] = _BEVERAGE
-DESCRIPTOR.message_types_by_name['Datapoint'] = _DATAPOINT
-DESCRIPTOR.message_types_by_name['History'] = _HISTORY
-DESCRIPTOR.message_types_by_name['UpdateRequest'] = _UPDATEREQUEST
-DESCRIPTOR.message_types_by_name['GetRequest'] = _GETREQUEST
-DESCRIPTOR.message_types_by_name['AddRequest'] = _ADDREQUEST
-DESCRIPTOR.message_types_by_name['UpdateReply'] = _UPDATEREPLY
-DESCRIPTOR.message_types_by_name['GetReply'] = _GETREPLY
-DESCRIPTOR.message_types_by_name['AddReply'] = _ADDREPLY
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
-
+_BEVERAGE = DESCRIPTOR.message_types_by_name['Beverage']
+_DATAPOINT = DESCRIPTOR.message_types_by_name['Datapoint']
+_HISTORY = DESCRIPTOR.message_types_by_name['History']
+_BUYREQUEST = DESCRIPTOR.message_types_by_name['BuyRequest']
+_ADDREQUEST = DESCRIPTOR.message_types_by_name['AddRequest']
+_PRICESREQUEST = DESCRIPTOR.message_types_by_name['PricesRequest']
+_HISTORYREQUEST = DESCRIPTOR.message_types_by_name['HistoryRequest']
+_BUYREPLY = DESCRIPTOR.message_types_by_name['BuyReply']
 Beverage = _reflection.GeneratedProtocolMessageType('Beverage', (_message.Message,), {
   'DESCRIPTOR' : _BEVERAGE,
   '__module__' : 'Bierboerse_pb2'
@@ -404,19 +48,12 @@ History = _reflection.GeneratedProtocolMessageType('History', (_message.Message,
   })
 _sym_db.RegisterMessage(History)
 
-UpdateRequest = _reflection.GeneratedProtocolMessageType('UpdateRequest', (_message.Message,), {
-  'DESCRIPTOR' : _UPDATEREQUEST,
+BuyRequest = _reflection.GeneratedProtocolMessageType('BuyRequest', (_message.Message,), {
+  'DESCRIPTOR' : _BUYREQUEST,
   '__module__' : 'Bierboerse_pb2'
-  # @@protoc_insertion_point(class_scope:de.hadiko.vev.k2.bierboerse.UpdateRequest)
+  # @@protoc_insertion_point(class_scope:de.hadiko.vev.k2.bierboerse.BuyRequest)
   })
-_sym_db.RegisterMessage(UpdateRequest)
-
-GetRequest = _reflection.GeneratedProtocolMessageType('GetRequest', (_message.Message,), {
-  'DESCRIPTOR' : _GETREQUEST,
-  '__module__' : 'Bierboerse_pb2'
-  # @@protoc_insertion_point(class_scope:de.hadiko.vev.k2.bierboerse.GetRequest)
-  })
-_sym_db.RegisterMessage(GetRequest)
+_sym_db.RegisterMessage(BuyRequest)
 
 AddRequest = _reflection.GeneratedProtocolMessageType('AddRequest', (_message.Message,), {
   'DESCRIPTOR' : _ADDREQUEST,
@@ -425,72 +62,47 @@ AddRequest = _reflection.GeneratedProtocolMessageType('AddRequest', (_message.Me
   })
 _sym_db.RegisterMessage(AddRequest)
 
-UpdateReply = _reflection.GeneratedProtocolMessageType('UpdateReply', (_message.Message,), {
-  'DESCRIPTOR' : _UPDATEREPLY,
+PricesRequest = _reflection.GeneratedProtocolMessageType('PricesRequest', (_message.Message,), {
+  'DESCRIPTOR' : _PRICESREQUEST,
   '__module__' : 'Bierboerse_pb2'
-  # @@protoc_insertion_point(class_scope:de.hadiko.vev.k2.bierboerse.UpdateReply)
+  # @@protoc_insertion_point(class_scope:de.hadiko.vev.k2.bierboerse.PricesRequest)
   })
-_sym_db.RegisterMessage(UpdateReply)
+_sym_db.RegisterMessage(PricesRequest)
 
-GetReply = _reflection.GeneratedProtocolMessageType('GetReply', (_message.Message,), {
-  'DESCRIPTOR' : _GETREPLY,
+HistoryRequest = _reflection.GeneratedProtocolMessageType('HistoryRequest', (_message.Message,), {
+  'DESCRIPTOR' : _HISTORYREQUEST,
   '__module__' : 'Bierboerse_pb2'
-  # @@protoc_insertion_point(class_scope:de.hadiko.vev.k2.bierboerse.GetReply)
+  # @@protoc_insertion_point(class_scope:de.hadiko.vev.k2.bierboerse.HistoryRequest)
   })
-_sym_db.RegisterMessage(GetReply)
+_sym_db.RegisterMessage(HistoryRequest)
 
-AddReply = _reflection.GeneratedProtocolMessageType('AddReply', (_message.Message,), {
-  'DESCRIPTOR' : _ADDREPLY,
+BuyReply = _reflection.GeneratedProtocolMessageType('BuyReply', (_message.Message,), {
+  'DESCRIPTOR' : _BUYREPLY,
   '__module__' : 'Bierboerse_pb2'
-  # @@protoc_insertion_point(class_scope:de.hadiko.vev.k2.bierboerse.AddReply)
+  # @@protoc_insertion_point(class_scope:de.hadiko.vev.k2.bierboerse.BuyReply)
   })
-_sym_db.RegisterMessage(AddReply)
+_sym_db.RegisterMessage(BuyReply)
 
+_BIERBOERSE = DESCRIPTOR.services_by_name['Bierboerse']
+if _descriptor._USE_C_DESCRIPTORS == False:
 
-
-_BIERBOERSE = _descriptor.ServiceDescriptor(
-  name='Bierboerse',
-  full_name='de.hadiko.vev.k2.bierboerse.Bierboerse',
-  file=DESCRIPTOR,
-  index=0,
-  serialized_options=None,
-  create_key=_descriptor._internal_create_key,
-  serialized_start=817,
-  serialized_end=1129,
-  methods=[
-  _descriptor.MethodDescriptor(
-    name='addBeverage',
-    full_name='de.hadiko.vev.k2.bierboerse.Bierboerse.addBeverage',
-    index=0,
-    containing_service=None,
-    input_type=_ADDREQUEST,
-    output_type=_ADDREPLY,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='updateBeverage',
-    full_name='de.hadiko.vev.k2.bierboerse.Bierboerse.updateBeverage',
-    index=1,
-    containing_service=None,
-    input_type=_UPDATEREQUEST,
-    output_type=_UPDATEREPLY,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='getBeverage',
-    full_name='de.hadiko.vev.k2.bierboerse.Bierboerse.getBeverage',
-    index=2,
-    containing_service=None,
-    input_type=_GETREQUEST,
-    output_type=_GETREPLY,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-])
-_sym_db.RegisterServiceDescriptor(_BIERBOERSE)
-
-DESCRIPTOR.services_by_name['Bierboerse'] = _BIERBOERSE
-
+  DESCRIPTOR._options = None
+  _BEVERAGE._serialized_start=82
+  _BEVERAGE._serialized_end=195
+  _DATAPOINT._serialized_start=197
+  _DATAPOINT._serialized_end=313
+  _HISTORY._serialized_start=315
+  _HISTORY._serialized_end=381
+  _BUYREQUEST._serialized_start=383
+  _BUYREQUEST._serialized_end=413
+  _ADDREQUEST._serialized_start=415
+  _ADDREQUEST._serialized_end=484
+  _PRICESREQUEST._serialized_start=486
+  _PRICESREQUEST._serialized_end=501
+  _HISTORYREQUEST._serialized_start=503
+  _HISTORYREQUEST._serialized_end=561
+  _BUYREPLY._serialized_start=564
+  _BUYREPLY._serialized_end=692
+  _BIERBOERSE._serialized_start=695
+  _BIERBOERSE._serialized_end=1100
 # @@protoc_insertion_point(module_scope)
