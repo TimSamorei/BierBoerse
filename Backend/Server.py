@@ -1,10 +1,12 @@
 from concurrent import futures
-from Backend.Bierboerse_pb2 import Beverage
+from Bierboerse_pb2 import Beverage
 import Database
 import grpc
-import math
+import datetime
+import google.protobuf.timestamp_pb2 import Timestamp
 import Bierboerse_pb2_grpc
 import Bierboerse_pb2
+
 
 
 class BierBoerseServer(Bierboerse_pb2_grpc.BierboerseServicer):
@@ -29,6 +31,11 @@ class BierBoerseServer(Bierboerse_pb2_grpc.BierboerseServicer):
 
     def getBeverage(self, request, context):
         return
+
+
+    def getTimestamp():
+        t = datetime.datetime.now().timestamp()
+        return Timestamp(seconds=int(t),nanos=int(t % 1*1e9))
 
 
 def serve():
