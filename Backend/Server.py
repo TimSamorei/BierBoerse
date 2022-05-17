@@ -25,13 +25,16 @@ class BierBoerseServer(Bierboerse_pb2_grpc.BierboerseServicer):
         return
 
 
-    def updateBeverage(self, request, context):
+    def buyBeverage(self, request, context):
         return
 
 
-    def getBeverage(self, request, context):
-        return
+    def getPrices(self, request, context):
+        return Database.getLatestDatapoint()
 
+
+    def getHistory(self, request, context):
+        return Database.getHistory()
 
     def getTimestamp():
         t = datetime.datetime.now().timestamp()
