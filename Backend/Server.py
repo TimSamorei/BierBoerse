@@ -42,9 +42,9 @@ class BierBoerseServer(Bierboerse_pb2_grpc.BierboerseServicer):
 
         for beverage in oldBeverageList:
             if (beverage.getId() != beverageNew.getId()):
-                newBeverageList.add(beverage)
+                newBeverageList.append(beverage)
             else:
-                newBeverageList.add(beverageNew)
+                newBeverageList.append(beverageNew)
 
         newDatapoint = Bierboerse_pb2.Datapoint(beverages=newBeverageList)
 
