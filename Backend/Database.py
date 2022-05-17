@@ -5,17 +5,6 @@ import grpc
 import Bierboerse_pb2_grpc
 import Bierboerse_pb2
 
-def getHistory():
-    f = open("demofile.txt", "r")
-    
-    history = Bierboerse_pb2.PriceHistory()
-
-    encodedStr = f.read()
-    decodedBytes = base64.b64decode(encodedStr)
-    history.ParseFromString(decodedBytes)
-
-    return history
-
 def getLatestDatapoint():
     return getHistory().history[-1]
 
@@ -25,7 +14,7 @@ def addDatapoint(dataPoint):
 
     newList.append(dataPoint)
 
-    newHistory = Bierboerse_pb2.PriceHistory(history=newList)
+    newHistory = Bierboerse_pb2.History(history=newList)
 
     f = open("demofile.txt", "w")
 
@@ -35,15 +24,14 @@ def addDatapoint(dataPoint):
 
     f.write(encodedStr)
 
-
-
-
-
 def initDatabase():
-    dataPoint = Bierboerse_pb2.PriceDatapoint(rothausPrice=120,augustinerPrice=150,rothausBought=0,augustinerBought=0)
-    list = []
-    list.append(dataPoint)
-    history = Bierboerse_pb2.PriceHistory(history=list)
+    bevList = []
+    dataPoint = Bierboerse_pb2.Datapoint(beverages=bevList)
+
+    hisList = []
+    hisList.append(dataPoint)
+    
+    history = Bierboerse_pb2.History(history=hisList)
 
     f = open("demofile.txt", "w")
 
@@ -52,5 +40,16 @@ def initDatabase():
     encodedStr = str(encodedBytes, "utf-8")
 
     f.write(encodedStr)
+
+def getHistory():
+    f = open("demofile.txt", "r")
+    
+    history = Bierboerse_pb2.History()
+
+    encodedStr = f.read()
+    decodedBytes = base64.b64decode(encodedStr)
+    history.ParseFromString(decodedBytes)
+
+    return history
 
 
