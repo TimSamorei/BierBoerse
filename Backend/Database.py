@@ -15,7 +15,7 @@ def addDatapoint(dataPoint):
 
     newHistory = Bierboerse_pb2.History(history=history)
 
-    with open("database.txt", "w") as file:
+    with open("database.txt", "w", encoding="utf-8") as file:
 
         data = newHistory.SerializeToString()
         encodedBytes = base64.b64encode(data)
@@ -32,7 +32,7 @@ def initDatabase():
 
     history = Bierboerse_pb2.History(history=hisList)
 
-    with open("database.txt", "w") as file:
+    with open("database.txt", "w", encoding="utf-8") as file:
 
         data = history.SerializeToString()
         encodedBytes = base64.b64encode(data)
@@ -41,7 +41,7 @@ def initDatabase():
         file.write(encodedStr)
 
 def getHistory():
-    with open("demofile.txt", "r") as file:
+    with open("demofile.txt", "r", encoding="utf-8") as file:
 
         history = Bierboerse_pb2.History()
 
