@@ -6,34 +6,51 @@ import "google/protobuf/timestamp.proto";
 
 service Bierboerse {
 
-    rpc updateBeers (UpdateBeerRequest) returns (ServerReply) {}
+    rpc addBeverage (AddRequest) returns (Datapoint) {}
 
-    rpc getPrices (PriceRequest) returns (ServerReply) {}
+    rpc buyBeverage (BuyRequest) returns (BuyReply) {}
 
-  }
+    rpc getPrices (PricesRequest) returns (Datapoint) {}
 
-  message PriceDatapoint {
-    int32 rothausPrice = 1;
-    int32 augustinerPrice = 2;
-    int32 rothausBought = 3;
-    int32 augustinerBought = 4;
-    google.protobuf.Timestamp timestamp = 5;
+    rpc getHistory (HistoryRequest) returns (History) {}
 
   }
 
-  message PriceHistory {
-    repeated PriceDatapoint history = 1;
+  message Beverage {
+    string name = 1;
+    int32 id = 2;
+    int32 purchasingPrice = 3;
+    int32 currentPrice = 4;
+    int32 sold = 5;
+    int32 profit = 6;
   }
 
-  message UpdateBeerRequest {
-    int32 numRothaus = 1;
-    int32 numAugustiner = 2;
-  }
-  
-  message PriceRequest {
-    google.protobuf.Timestamp timestamp = 1;
+  message Datapoint {
+    repeated Beverage beverages = 1;
+    google.protobuf.Timestamp timestamp = 2;
+
   }
 
-  message ServerReply {
-    PriceDatapoint prices = 1;
+  message History {
+    repeated Datapoint history = 1;
+  }
+
+  message BuyRequest {
+    int32 buyIndex = 1;
+  }
+
+  message AddRequest {
+    Beverage beverage = 1;
+  }
+
+  message PricesRequest {
+  }
+
+  message HistoryRequest {
+    google.protobuf.Timestamp from = 1;
+  }
+
+  message BuyReply {
+    Datapoint oldPrices = 1;
+    Datapoint newPrices = 2;
   }

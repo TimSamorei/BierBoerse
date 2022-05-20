@@ -14,22 +14,38 @@ class BierboerseStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.updateBeers = channel.unary_unary(
-                '/de.hadiko.vev.k2.bierboerse.Bierboerse/updateBeers',
-                request_serializer=Bierboerse__pb2.UpdateBeerRequest.SerializeToString,
-                response_deserializer=Bierboerse__pb2.ServerReply.FromString,
+        self.addBeverage = channel.unary_unary(
+                '/de.hadiko.vev.k2.bierboerse.Bierboerse/addBeverage',
+                request_serializer=Bierboerse__pb2.AddRequest.SerializeToString,
+                response_deserializer=Bierboerse__pb2.Datapoint.FromString,
+                )
+        self.buyBeverage = channel.unary_unary(
+                '/de.hadiko.vev.k2.bierboerse.Bierboerse/buyBeverage',
+                request_serializer=Bierboerse__pb2.BuyRequest.SerializeToString,
+                response_deserializer=Bierboerse__pb2.BuyReply.FromString,
                 )
         self.getPrices = channel.unary_unary(
                 '/de.hadiko.vev.k2.bierboerse.Bierboerse/getPrices',
-                request_serializer=Bierboerse__pb2.PriceRequest.SerializeToString,
-                response_deserializer=Bierboerse__pb2.ServerReply.FromString,
+                request_serializer=Bierboerse__pb2.PricesRequest.SerializeToString,
+                response_deserializer=Bierboerse__pb2.Datapoint.FromString,
+                )
+        self.getHistory = channel.unary_unary(
+                '/de.hadiko.vev.k2.bierboerse.Bierboerse/getHistory',
+                request_serializer=Bierboerse__pb2.HistoryRequest.SerializeToString,
+                response_deserializer=Bierboerse__pb2.History.FromString,
                 )
 
 
 class BierboerseServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def updateBeers(self, request, context):
+    def addBeverage(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def buyBeverage(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -41,18 +57,34 @@ class BierboerseServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def getHistory(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_BierboerseServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'updateBeers': grpc.unary_unary_rpc_method_handler(
-                    servicer.updateBeers,
-                    request_deserializer=Bierboerse__pb2.UpdateBeerRequest.FromString,
-                    response_serializer=Bierboerse__pb2.ServerReply.SerializeToString,
+            'addBeverage': grpc.unary_unary_rpc_method_handler(
+                    servicer.addBeverage,
+                    request_deserializer=Bierboerse__pb2.AddRequest.FromString,
+                    response_serializer=Bierboerse__pb2.Datapoint.SerializeToString,
+            ),
+            'buyBeverage': grpc.unary_unary_rpc_method_handler(
+                    servicer.buyBeverage,
+                    request_deserializer=Bierboerse__pb2.BuyRequest.FromString,
+                    response_serializer=Bierboerse__pb2.BuyReply.SerializeToString,
             ),
             'getPrices': grpc.unary_unary_rpc_method_handler(
                     servicer.getPrices,
-                    request_deserializer=Bierboerse__pb2.PriceRequest.FromString,
-                    response_serializer=Bierboerse__pb2.ServerReply.SerializeToString,
+                    request_deserializer=Bierboerse__pb2.PricesRequest.FromString,
+                    response_serializer=Bierboerse__pb2.Datapoint.SerializeToString,
+            ),
+            'getHistory': grpc.unary_unary_rpc_method_handler(
+                    servicer.getHistory,
+                    request_deserializer=Bierboerse__pb2.HistoryRequest.FromString,
+                    response_serializer=Bierboerse__pb2.History.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -65,7 +97,7 @@ class Bierboerse(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def updateBeers(request,
+    def addBeverage(request,
             target,
             options=(),
             channel_credentials=None,
@@ -75,9 +107,26 @@ class Bierboerse(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/de.hadiko.vev.k2.bierboerse.Bierboerse/updateBeers',
-            Bierboerse__pb2.UpdateBeerRequest.SerializeToString,
-            Bierboerse__pb2.ServerReply.FromString,
+        return grpc.experimental.unary_unary(request, target, '/de.hadiko.vev.k2.bierboerse.Bierboerse/addBeverage',
+            Bierboerse__pb2.AddRequest.SerializeToString,
+            Bierboerse__pb2.Datapoint.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def buyBeverage(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/de.hadiko.vev.k2.bierboerse.Bierboerse/buyBeverage',
+            Bierboerse__pb2.BuyRequest.SerializeToString,
+            Bierboerse__pb2.BuyReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -93,7 +142,24 @@ class Bierboerse(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/de.hadiko.vev.k2.bierboerse.Bierboerse/getPrices',
-            Bierboerse__pb2.PriceRequest.SerializeToString,
-            Bierboerse__pb2.ServerReply.FromString,
+            Bierboerse__pb2.PricesRequest.SerializeToString,
+            Bierboerse__pb2.Datapoint.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def getHistory(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/de.hadiko.vev.k2.bierboerse.Bierboerse/getHistory',
+            Bierboerse__pb2.HistoryRequest.SerializeToString,
+            Bierboerse__pb2.History.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
