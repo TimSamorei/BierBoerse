@@ -4,62 +4,70 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
-    private String[] localDataSet;
+    private ListItem[] localDataSet;
 
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
-     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView;
+        private final TextView text_name;
+        private final TextView text_price;
+        private ListItem that;
 
         public ViewHolder(View view) {
             super(view);
-            // Define click listener for the ViewHolder's View
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (that instanceof ListItem.ListItem_Add) {
+                        Toast.makeText(view.getContext(), "Adding",
+                                Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(view.getContext(), text_name.getText(),
+                                Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
 
-            textView = (TextView) view.findViewById(R.id.textView);
+            text_name = (TextView) view.findViewById(R.id.text_name);
+            text_price = (TextView) view.findViewById(R.id.text_price);
         }
 
-        public TextView getTextView() {
-            return textView;
+        public TextView getNameView() {
+            return text_name;
+        }
+
+        public TextView getPriceView() {
+            return text_price;
+        }
+
+        public void setThat(ListItem mThat) {
+            that = mThat;
         }
     }
 
-    /**
-     * Initialize the dataset of the Adapter.
-     *
-     * @param dataSet String[] containing the data to populate views to be used
-     * by RecyclerView.
-     */
-    public CustomAdapter(String[] dataSet) {
+    public CustomAdapter(ListItem[] dataSet) {
         localDataSet = dataSet;
     }
 
-    // Create new views (invoked by the layout manager)
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_layout, viewGroup, false);
 
         return new ViewHolder(view);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        viewHolder.getTextView().setText(localDataSet[position]);
+        viewHolder.getNameView().setText(localDataSet[position].getName());
+        viewHolder.getPriceView().setText(localDataSet[position].getCurrentPrice());
+        viewHolder.setThat(localDataSet[position]);
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return localDataSet.length;

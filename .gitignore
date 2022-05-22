@@ -162,3 +162,16 @@ cython_debug/
 # Database
 Backend/datebase.txt
 database.txt
+
+
+# App
+/App/*.iml
+/App/.gradle
+/App/local.properties
+/App/.idea/*
+/App/.DS_Store
+/App/build
+/App/captures
+/App/.externalNativeBuild
+/App/.cxx
+/App/local.properties
