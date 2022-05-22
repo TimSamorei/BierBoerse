@@ -11,7 +11,7 @@ import Bierboerse_pb2
 
 class BierBoerseServer(Bierboerse_pb2_grpc.BierboerseServicer):
 
-    currentDatapoint = None
+    soldBeers = 0
 
     def addBeverage(self, request, context):
         oldDatapoint = Database.getLatestDatapoint()
@@ -26,32 +26,23 @@ class BierBoerseServer(Bierboerse_pb2_grpc.BierboerseServicer):
 
 
     def buyBeverage(self, request, context):
+        self.soldBeers += 1
         latestDatapoint = Database.getLatestDatapoint()
         oldBeverageList = latestDatapoint.beverages
-        oldBeverage = oldBeverageList[request.buyIndex]
-        beverageNew = Bierboerse_pb2.Beverage(
-            name=oldBeverage.name,
-            id=oldBeverage.id,
-            purchasingPrice=oldBeverage.purchasingPrice,
-            currentPrice=oldBeverage.currentPrice,
-            sold=oldBeverage.sold + 1,
-            profit=oldBeverage.profit + oldBeverage.currentPrice
-        )
-        print("bought", beverageNew)
-
         newBeverageList = []
 
         for beverage in oldBeverageList:
-            if (beverage.id != beverageNew.id):
-                newBeverageList.append(beverage)
+            if (beverage.id == request.buyIndex):
+                newBeverage = self.makePrice(beverage, 1, latestDatapoint)
             else:
-                newBeverageList.append(beverageNew)
+                newBeverage = self.makePrice(beverage, 0, latestDatapoint)
+            newBeverageList.append(newBeverage)
 
-        newDatapoint = Bierboerse_pb2.Datapoint(beverages=newBeverageList)
+        newDatapoint = Bierboerse_pb2.Datapoint(beverages=newBeverageList, timestamp=self.getTimestamp())
 
         Database.addDatapoint(newDatapoint)
 
-        return Bierboerse_pb2.BuyReply(oldPrices=latestDatapoint, newPrices=newDatapoint, timestamp=self.getTimestamp())
+        return Bierboerse_pb2.BuyReply(oldPrices=latestDatapoint, newPrices=newDatapoint)
 
 
 
@@ -67,6 +58,20 @@ class BierBoerseServer(Bierboerse_pb2_grpc.BierboerseServicer):
     def getTimestamp(self):
         t = datetime.datetime.now().timestamp()
         return Timestamp(seconds=int(t), nanos=int(t % 1*1e9))
+
+    def makePrice(self, oldBeverage, inc, latestDatapoint):
+        diff = ((oldBeverage.sold + inc)/self.soldBeers) - (1/len(latestDatapoint.beverages))
+        newPrice = oldBeverage * (1 + diff)
+
+
+        beverageNew = Bierboerse_pb2.Beverage(
+            name=oldBeverage.name,
+            id=oldBeverage.id,
+            purchasingPrice=oldBeverage.purchasingPrice,
+            currentPrice=newPrice,
+            sold=oldBeverage.sold + inc,
+            profit=oldBeverage.profit + oldBeverage.currentPrice
+        )
 
 
 def serve():

@@ -4,13 +4,12 @@ import grpc
 import Bierboerse_pb2_grpc
 import Bierboerse_pb2
 
-locale.setlocale(locale.LC_ALL, "german")
 
 def printPricelist(datapoint: Bierboerse_pb2.Datapoint):
     print("Prices at", datapoint.timestamp)
     print("ID\tNAME\t\tPRICE\t\tSOLD")
     for bev in datapoint.beverages:
-        print(bev.id, "\t", bev.name, "\t", locale.currency(bev.currentPrice / 100), "\t", bev.sold)
+        print(bev.id, "\t", bev.name, "\t", bev.currentPrice / 100, "\t", bev.sold)
     print("=========================")
 
 
