@@ -13,6 +13,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import de.hadiko.vev.k2.bierboerse.databinding.ActivityMainBinding;
 import io.grpc.ManagedChannel;
@@ -30,9 +33,12 @@ public class MainActivity extends AppCompatActivity {
     private BierboerseGrpc.BierboerseBlockingStub blockingStub;
     private Context context;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         mChannel = ManagedChannelBuilder.forAddress("94.45.240.181", 1337).usePlaintext().build();
         blockingStub = BierboerseGrpc.newBlockingStub(mChannel);
